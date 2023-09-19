@@ -1,28 +1,13 @@
 import streamlit as st
-
+from model import clubPredictor
 
 result= [{"Predicted Club":""}]
-data_rds = ""
-string_data = False
-names_from_platform_string = ""
-
 st.markdown("<h1 style='text-align: center; color: green;'>JGA Best Gold Club </h1>", unsafe_allow_html=True)
 planet = st.text_input("Planet")
-shot_distance = st.text_input("Shot Distance")
-
-if string_data:
-    question_area=string_data
+shot_distance = st.number_input("Shot Distance")
 
 if st.button('Send'):
-    if not data_rds:
-        cv = st.text_area("CV", height=200, value = data_rds, disabled=False)
-        similar_job_area = st.text_area("Result", height=200, value = "[]", disabled=False)
-        
-    # model_object = Model(data_rds, temp)
-    # result=model_object.open_ai_model()
-    # extracted_similar_job = result[0]["summary_text"].split()
-
-    cv = st.text_area("CV", height=200, value = data_rds, disabled=False)
-    
-    similar_job_area = st.text_area("Result", height=200, value = result, disabled=False)
+    model_object = clubPredictor(planet,shot_distance)
+    result = model_object.predict()
+    cv = st.text_area("Club", height=2, value = result, disabled=False)
 
