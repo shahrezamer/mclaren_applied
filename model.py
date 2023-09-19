@@ -12,6 +12,16 @@ class clubPredictor(object):
         self.__preprocess_data()
 
     def __calculate_initial_velocity(self, swing_speed, loft_angle_deg):
+        """
+        Calculate the initial velocity of a golf ball based on initial ball speed (m/s) and loft angle (degrees).
+
+        Args:
+        - initial_ball_speed (float): Initial ball speed in meters per second (m/s).
+        - loft_angle_deg (float): Loft angle in degrees.
+
+        Returns:
+        - initial_velocity (float): Initial velocity of the golf ball in meters per second (m/s).
+        """
         loft_angle_rad = math.radians(loft_angle_deg)
         initial_velocity = 1.5 * swing_speed * (1 + math.sin(loft_angle_rad))
         return initial_velocity
@@ -98,3 +108,8 @@ class clubPredictor(object):
 
             if actual_club == min_club:
                 count += 1
+        print(count)
+
+
+# model_object = clubPredictor('Endor', 226.539)
+# result = model_object.test_model()
